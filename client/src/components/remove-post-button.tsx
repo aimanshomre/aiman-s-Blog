@@ -1,6 +1,5 @@
 import axios from "axios";
 
-import { useNavigate } from "react-router";
 import type { Post } from "@/pages/dashbord";
 import { useAuth } from "@/context/auth-context";
 import { UserLoginForm } from "@/pages/login-form";

@@ -1,11 +1,8 @@
 import { useState } from "react";
-// import { Footer } from "../components/footer";
-// import { Header } from "@/";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { useAuth } from "@/context/auth-context";
 import { MembersOnlyPopup } from "./no-member-popup";
-// import { useUser } from "../contexts/aouthcontext";
 
 export const CreatePost = () => {
   const BASEURL = "http://localhost:3001/api";

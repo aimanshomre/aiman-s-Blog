@@ -2,7 +2,6 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormControl,
   FormDescription,
   FormMessage,
 } from "@/components/ui/form";
@@ -42,7 +41,6 @@ export function FormFieldWrapper({
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <div className="flex ">
-            {/* <FormControl> */}
             <Input
               type={display}
               placeholder={placeholder}
@@ -50,7 +48,6 @@ export function FormFieldWrapper({
               {...inputProps}
               className={fieldState.error ? "border-red-500 bg-red-50" : ""}
             />
-            {/* </FormControl> */}
             {(name === "password" || name === "confirmPassword") && (
               <Button type="button" onClick={() => toggleDispalay()}>
                 show password

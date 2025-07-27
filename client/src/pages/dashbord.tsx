@@ -1,14 +1,11 @@
 import { API_BASE_URL, useAuth } from "@/context/auth-context";
-import { UsersignupForm } from "./signup-form";
 import { LogoutBtn } from "@/components/logout";
-import { UserLoginForm } from "./login-form";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { RemovePostBtn } from "@/components/remove-post-button";
 import { EditPostBtn } from "@/components/edit-button";
 import { useState } from "react";
-import { MembersOnlyPopup } from "@/components/no-member-popup";
 
 export interface Post {
   id: string;
@@ -40,25 +37,10 @@ export function Dashboard() {
     },
   });
 
-  // if (!userContext) {
-  //   console.log("!userc");
-
-  //   // return <MembersOnlyPopup />;
-  //   if (userContext.loading) {
-  //     console.log("loading");
-
-  //     return <h1>loading...</h1>;
-  //   }
-  // }
-  // if (!userContext.user) {
-  //   console.log("!userrrr");
-  //   return <MembersOnlyPopup />;
-  // }
   if (error) return <h1>ERROR</h1>;
   if (isPending) return <h1>loading...</h1>;
   console.log(posts);
 
-  // if (userContext.user)
   return (
     <div className="max-w-4xl mx-auto p-4">
       {userContext?.user ? (
@@ -118,12 +100,4 @@ export function Dashboard() {
       </div>
     </div>
   );
-  // );
-
-  // return (
-  //   <>
-  //     <h1>end</h1>
-  //     <UserLoginForm />;
-  //   </>
-  // );
 }

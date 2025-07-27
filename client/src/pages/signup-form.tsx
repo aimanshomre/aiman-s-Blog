@@ -1,24 +1,15 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { minLength, z } from "zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { FormFieldWrapper } from "../components/FormFieldWrapper";
 import { useAuth } from "../context/auth-context";
 import { useMutation } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router";
-// import  {User}
-interface ICreateUser {
-  message: string;
-  user: {
-    id: string;
-    email: string;
-    name: string;
-    createdAt: string;
-  };
-}
+import { useNavigate } from "react-router";
+
 interface signUpForm {
   name: string;
   email: string;
@@ -86,7 +77,7 @@ export function UsersignupForm() {
           password: data.password,
         });
 
-        await userContext?.checkAuth(); // wait for updated user
+        await userContext?.checkAuth();
         if (userContext?.user) {
           navigate("/", { replace: true });
         }
@@ -104,9 +95,6 @@ export function UsersignupForm() {
       ),
     onSuccess: () => {
       form.reset();
-
-      // userContext?.checkAuth();
-      // useAuth();
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
@@ -128,13 +116,7 @@ export function UsersignupForm() {
       confirmPassword: "",
     },
   });
-  // // console.log(mutation.data?.data);
 
-  // useEffect(() => {
-  //   if (mutation.isSuccess) {
-  //     navigate("/", { replace: true });
-  //   }
-  // }, [mutation.isSuccess, navigate]);
   if (userContext?.user) navigate("/", { replace: true });
 
   return (
