@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { EditForm } from "./edit-form";
+import { EditForm } from "./forms/edit-form";
 import type { Post } from "@/pages/dashbord";
 import { useAuth } from "@/context/auth-context";
 import { UserLoginForm } from "@/pages/login-form";

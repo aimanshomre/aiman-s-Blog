@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { FormFieldWrapper } from "../components/FormFieldWrapper";
+import { FormFieldWrapper } from "../components/forms/FormFieldWrapper";
 import { useAuth } from "../context/auth-context";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";

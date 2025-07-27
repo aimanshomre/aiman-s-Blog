@@ -1,4 +1,4 @@
-import { CreatePost } from "@/components/create-post";
+import { CreatePost } from "@/pages/create-post";
 import { RootLayout } from "@/layouts/root-layout";
 import { Dashboard } from "@/pages/dashbord";
 import { UserLoginForm } from "@/pages/login-form";

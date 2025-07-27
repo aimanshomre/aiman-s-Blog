@@ -6,6 +6,8 @@ import { useNavigate } from "react-router";
 import { RemovePostBtn } from "@/components/remove-post-button";
 import { EditPostBtn } from "@/components/edit-button";
 import { useState } from "react";
+import BlurText from "@/blocks/TextAnimations/BlurText/BlurText";
+// import BlurText from "./BlurText";
 
 export interface Post {
   id: string;
@@ -24,6 +26,9 @@ export interface PostsResponse {
 export function Dashboard() {
   const navigate = useNavigate();
   const [posts, setPosts] = useState<Post[]>([]);
+  const handleAnimationComplete = () => {
+    console.log("Animation completed!");
+  };
 
   const userContext = useAuth();
   const { data, isPending, error } = useQuery({
@@ -40,12 +45,20 @@ export function Dashboard() {
   if (error) return <h1>ERROR</h1>;
   if (isPending) return <h1>loading...</h1>;
   console.log(posts);
+  // const txt = `Hello ${userContext?.user?.name}, nice to see you again!`
 
   return (
     <div className="max-w-4xl mx-auto p-4">
       {userContext?.user ? (
         <h1 className="text-3xl font-bold mb-4">
-          Hello {userContext.user.name}, nice to see you again!
+          <BlurText
+            text={`Hello ${userContext.user.name}, nice to see you again!`}
+            delay={150}
+            animateBy="words"
+            direction="top"
+            onAnimationComplete={handleAnimationComplete}
+            className="text-2xl mb-8"
+          />
         </h1>
       ) : (
         <h1 className="text-3xl font-bold mb-4">

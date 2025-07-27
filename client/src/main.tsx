@@ -4,8 +4,6 @@ import "./index.css";
 import App from "./App.tsx";
 import { AuthProvider } from "./context/auth-context.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { RouterProvider } from "react-router";
-import { router } from "./router/router.tsx";
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(

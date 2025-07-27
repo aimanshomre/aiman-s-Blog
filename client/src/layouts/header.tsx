@@ -1,7 +1,8 @@
 // components/Header.tsx
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/auth-context";
-import { LogoutBtn } from "./logout";
+import { LogoutBtn } from "@/components/logout";
+import { Logo } from "@/assets/logo";
 
 export const Header = () => {
   const userContext = useAuth();
@@ -9,8 +10,14 @@ export const Header = () => {
 
   return (
     <header className="bg-gray-900 text-white px-6 py-4 flex justify-between items-center shadow-md">
-      <Link to="/" className="text-xl font-bold hover:text-blue-400">
-        📝 Aiman's Blog
+      <Link
+        to="/"
+        className="flex justify-center  text-xl font-bold hover:text-blue-400"
+      >
+        <span className="flex justify-center items-center">
+          <Logo />
+        </span>
+        <h1>Aiman's Blog</h1>
       </Link>
 
       <nav className="flex gap-6 items-center">

@@ -6,7 +6,7 @@ import { Form } from "@/components/ui/form";
 import { useAuth } from "../context/auth-context";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { FormFieldWrapper } from "@/components/FormFieldWrapper";
+import { FormFieldWrapper } from "@/components/forms/FormFieldWrapper";
 import { useNavigate } from "react-router";
 
 interface signInForm {

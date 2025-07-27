@@ -2,9 +2,14 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { useAuth } from "@/context/auth-context";
-import { MembersOnlyPopup } from "./no-member-popup";
+import { MembersOnlyPopup } from "../components/no-member-popup";
+import { useDiscordMutation } from "@/lib/discord-bot";
+// import { sendToDiscord } from "@/lib/discord-bot";
 
 export const CreatePost = () => {
+  const discordMutation = useDiscordMutation();
+  // discordMutation.mutate({ title: "Title", content: "Hello from frontend!" });
+
   const BASEURL = "http://localhost:3001/api";
   const navigate = useNavigate();
 
@@ -25,8 +30,9 @@ export const CreatePost = () => {
 
     try {
       const res = await axios.post(`${BASEURL}/posts/`, newPost, {});
+      discordMutation.mutate(newPost);
       console.log("hehehe111111h:   ", res.data.message);
-      alert("post created! redirecting to feed");
+      // alert("post created! redirecting to feed");
       navigate("/");
     } catch (err) {
       console.log(err);
