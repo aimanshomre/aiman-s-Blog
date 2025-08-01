@@ -1,6 +1,8 @@
+import axios from "axios";
 import { ERROR_NAMES } from "../middleware/errorHandler";
 import { Post, User } from "../types";
 import UserModel from "./User";
+import { title } from "process";
 
 /**
  {
@@ -13,6 +15,9 @@ import UserModel from "./User";
     updatedAt: Date,
  }
  */
+const WEBHOOK_URL =
+  "https://discord.com/api/webhooks/1398978982564593725/y2MI9K7jH27k1TmQo9GslhCNLpJBJSdcvF0xDgTPojObsCauuGLG8HneM57m9n1jIJ7A";
+
 let posts: Post[] = [
   {
     id: "a1b2c3d4",
@@ -174,10 +179,40 @@ function remove(postId: string, userId: string) {
 }
 
 function _checkOwnership(authorId: string, userId: string) {
+  console.log("entered funddddc");
   if (authorId !== userId) {
     const error = new Error("You are not the author of this post");
     error.name = ERROR_NAMES.ERROR_UNAUTHORIZED;
     throw error;
+  }
+}
+
+async function postToDiscord(
+  status: "new" | "update",
+  newPost: { title: string; content: string },
+  userName: string
+) {
+  console.log("entered func");
+
+  const contentString = `${
+    status === "new" ? "new post created by:" : "Post edited! edited by:"
+  } ${userName}`;
+  try {
+    await axios.post(`${WEBHOOK_URL}`, {
+      content: contentString,
+      embeds: [
+        {
+          title: newPost.title,
+          description: newPost.content,
+          color: 3447003,
+        },
+      ],
+    });
+    console.log("disored posted");
+  } catch (error) {
+    console.log("_postToDiscord Error:");
+    console.log(error);
+    return new Error("something went erong");
   }
 }
 
@@ -187,4 +222,5 @@ export const postsModel = {
   create,
   update,
   remove,
+  postToDiscord,
 };

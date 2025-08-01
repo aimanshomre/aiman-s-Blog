@@ -1,5 +1,6 @@
 import { useAuth } from "@/context/auth-context";
 import { Button } from "./ui/button";
+import { IoIosLogOut } from "react-icons/io";
 
 export function LogoutBtn() {
   const userContext = useAuth();
@@ -11,7 +12,7 @@ export function LogoutBtn() {
         onClick={userContext?.logout}
         className="cursor-pointer"
       >
-        logout
+        <IoIosLogOut />
       </Button>
     </>
   );

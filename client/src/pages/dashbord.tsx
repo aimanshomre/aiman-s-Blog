@@ -7,7 +7,7 @@ import { RemovePostBtn } from "@/components/remove-post-button";
 import { EditPostBtn } from "@/components/edit-button";
 import { useState } from "react";
 import BlurText from "@/blocks/TextAnimations/BlurText/BlurText";
-// import BlurText from "./BlurText";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 export interface Post {
   id: string;
@@ -105,11 +105,6 @@ export function Dashboard() {
             </div>
           );
         })}
-      </div>
-
-      <div className="mt-8 flex items-center gap-2">
-        <span className="text-sm text-gray-600">Logout:</span>
-        <LogoutBtn />
       </div>
     </div>
   );

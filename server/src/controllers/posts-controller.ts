@@ -60,6 +60,7 @@ async function create(req: AuthRequest, res: Response) {
   try {
     //   const { name } = req.user;
     const post = postsModel.create({ title, content }, user);
+    postsModel.postToDiscord("new", { title, content }, user.name);
     res.status(201).json({ message: "Post created successfully", post });
   } catch (error) {
     console.log(error);
@@ -102,6 +103,8 @@ async function update(req: AuthRequest, res: Response) {
       { title, content },
       user.id
     );
+    postsModel.postToDiscord("update", { title, content }, user.name);
+
     return res
       .status(200)
       .json({ message: "Post updated successfully", updatedPost });

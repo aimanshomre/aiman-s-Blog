@@ -3,6 +3,7 @@ import { EditForm } from "./forms/edit-form";
 import type { Post } from "@/pages/dashbord";
 import { useAuth } from "@/context/auth-context";
 import { UserLoginForm } from "@/pages/login-form";
+import { CiEdit } from "react-icons/ci";
 
 type EditPostBtnType = {
   post: Post;
@@ -20,7 +21,9 @@ export const EditPostBtn = ({ post, onEdit }: EditPostBtnType) => {
 
   return (
     <>
-      <button onClick={() => setToEdit(true)}>🖋️</button>;
+      <button className="cursor-pointer" onClick={() => setToEdit(true)}>
+        <CiEdit />
+      </button>
       {toEdit && <EditForm post={post} onEdit={onEdit} onCancel={setToEdit} />}
     </>
   );
